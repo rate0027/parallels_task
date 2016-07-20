@@ -6,6 +6,11 @@
 
 ##Description
 担当とか？  
+Python: Daichi  
+Ruby  : Syo  
+C     : Moriya
+???   : Masataka  
+
 
 ##Usage
 作ったプログラムの使い方とか  

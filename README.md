@@ -8,7 +8,7 @@
 担当とか？  
 Python: Daichi  
 Ruby  : Syo  
-C     : Moriya
+C     : Moriya  
 ???   : Masataka  
 
 

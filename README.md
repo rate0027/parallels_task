@@ -5,15 +5,18 @@
 複数の言語で並列処理を行い特性を把握する？
 
 ##Description
-担当とか？  
-Python: Daichi  
-Ruby  : Syo  
-C     : Moriya  
-???   : Masataka  
+目標:ソートを並列化する  
+同じソートを別の方法で並列化して速度を図る.  
 
 
 ##Usage
 作ったプログラムの使い方とか  
+
+countsort:  
+```
+mpicc countsort.c
+mpirun -np num a.out
+```
 
 ##etc
 要望とかその他もろもろ,

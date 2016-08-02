@@ -9,6 +9,7 @@ void list_view(int *data);
 /* バブルソート */
 int bubble_sort(int *data) {
 	int tmp;
+
   for (int j=1;j<idNum-1;j++) {
 	  for (int i=0;i<idNum-j;i++) {
 	    if (data[i] > data[i+1]) {

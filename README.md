@@ -21,4 +21,12 @@ mpirun -np num a.out
 ##etc
 要望とかその他もろもろ,
 
+参考サイト:  
+- 分布数え上げソート(countsort)のアルゴリズム  
+http://www.codereading.com/algo_and_ds/algo/counting_sort.html
+
+- 並列プログラムサンプル置き場  
+https://computing.llnl.gov/tutorials/mpi/exercise.html
+
+
 

@@ -4,7 +4,7 @@
 /* キーは0からMまでの範囲の整数 */
 #define  M   100
 
-void counting_sort(int a[], int b[], int n, int argc, char **argv);
+void counting_sort(int a[], int b[], int n);
 void print_data(int data[], int length);
 
 /* ソートするデータ */
@@ -17,12 +17,21 @@ int work_data[N-1];
 /* キーの分布を数え上げるための配列 */
 int count[M+1], reccount[M+1];
 
+int  myid, numprocs;
 
 
-int main(int argc, char *argv[])
+int main(int argc, char **argv)
 {
-	printf("unsorted:\n");
-	print_data(src_data, N);
+  
+  MPI_Init(&argc, &argv);
+	MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
+	MPI_Comm_rank(MPI_COMM_WORLD, &myid);
+
+	if (myid == 0)
+	{
+	  printf("unsorted:\n");
+	  print_data(src_data, N);
+	}
 
 	int i;
   /* カウンタをすべて0にする */
@@ -34,25 +43,23 @@ int main(int argc, char *argv[])
 
 	
 	/* counting sort */
-	counting_sort(src_data, work_data, N, argc, argv);
+	counting_sort(src_data, work_data, N);
 	
-  printf("sorted:\n");
-  print_data(work_data, N);
+  if (myid==0)
+	{
+    printf("sorted:\n");
+    print_data(work_data, N);
+	}
 	
+	MPI_Finalize();
   return 0;
 }
 
 /* 大きさnの配列aを分布数え上げソートによって整列する。
  *  *    結果は配列bに得られる */
-void counting_sort(int a[], int b[], int n, int argc, char **argv)
+void counting_sort(int a[], int b[], int n)
 {
-
-  int  myid, numprocs;
 	int x, low, high, i;
-  
-	MPI_Init(&argc, &argv);
-	MPI_Comm_size(MPI_COMM_WORLD, &numprocs);
-	MPI_Comm_rank(MPI_COMM_WORLD, &myid);
 
 	/* データをブロードキャスト */
 	MPI_Bcast(a, n, MPI_INT, 0, MPI_COMM_WORLD);
@@ -85,9 +92,6 @@ void counting_sort(int a[], int b[], int n, int argc, char **argv)
       b[--reccount[a[i]]] = a[i];
     }
 	}
-
-
-	MPI_Finalize();
 
 }
 
